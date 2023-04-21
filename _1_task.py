@@ -1,7 +1,7 @@
 import re
 
 
-def change_string(string):
+def change_string(string: str):
     string = re.search(r'\d{2,4}\\\d{2,5}', string)
 
     if string is None:

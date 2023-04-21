@@ -22,7 +22,7 @@ def build_result_str(num_list: list[str]):
         return_str = return_str + str(find_max_value_num(list_with_nat_num))
 
     if len(list_with_zero) != 0:
-        return_str = return_str + build_str_with_num_beg_zero(list_with_zero)
+        return_str = return_str + build_str_with_num_begin_with_zero(list_with_zero)
 
     return return_str
 
@@ -33,20 +33,30 @@ def find_max_value_num(list_with_nat_num: list[str]):
     for num in range(9, 0, -1):
         result_list.clear()
 
-        for j in list_with_nat_num:
-            if re.fullmatch(str(num)+r'\d*', j):
-                result_list.append(j)
+        for i in list_with_nat_num:
+            if re.fullmatch(str(num)+r'\d*', i):
+                result_list.append(i)
 
         if len(result_list) == 1:
             list_with_nat_num.remove(result_list[0])
             return result_list[0]
+
         elif len(result_list) > 1:
-            min_element = min(result_list)
-            list_with_nat_num.remove(min_element)
-            return min_element
+            min_len = len(result_list[0])
+
+            for i in result_list:
+                if len(i) < min_len:
+                    min_len = len(i)
+
+            filter(lambda x: len(x) > min_len, result_list)
+
+            max_value_str = max(result_list)
+            list_with_nat_num.remove(max_value_str)
+
+            return max_value_str
 
 
-def build_str_with_num_beg_zero(num_list: list[str]):
+def build_str_with_num_begin_with_zero(num_list: list[str]):
     result_str = ''
     for i in natsorted(num_list, reverse=True):
         result_str = result_str + i
