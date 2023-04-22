@@ -56,6 +56,8 @@ if __name__ == '__main__':
         n = int(math.fabs(int(input("Input n (number of ATMs.): "))))
         k = int(math.fabs(int(input("Input k (number of additional ATMs): "))))
 
+        print()
+
         for i in range(0, n):
             segment_list.append(Segment(i, math.fabs(int(input("S["+str(i)+"] = ")))))
 
@@ -65,6 +67,6 @@ if __name__ == '__main__':
 
         segment_list.sort(key=lambda x: x.position, reverse=False)
 
-        print(get_result_list(segment_list))
-
+        print()
+        print("Result: " + str(get_result_list(segment_list)))
         print()
