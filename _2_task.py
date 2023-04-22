@@ -18,15 +18,18 @@ def build_optimal_ranges(seg_list: list[Segment], points: int):
         seg_dict[iterator] = (seg_dict[iterator-1])
 
         max_value = 0
-        min_count = 1
+        count_max_value = 1
         iter = 0
         index = 0
 
         for segment in seg_dict[iterator]:
-            if (segment.value > max_value) and (segment.count <= min_count):
+            if segment.value > max_value:
                 max_value = segment.value
-                min_count = segment.count
+                count_max_value = segment.count
                 index = iter
+            elif (segment.value == max_value) and (segment.count > count_max_value):
+                index = iter
+                count_max_value = segment.count
 
             iter += 1
 
