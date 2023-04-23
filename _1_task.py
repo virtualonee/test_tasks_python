@@ -22,6 +22,8 @@ def change_string(string: str):
 
 if __name__ == '__main__':
     print("Input string in format int(2-4)\\int(2-5)")
+    print()
     while True:
-        s = input()
-        print(change_string(s))
+        s = input("Input string: ")
+        print("Result: " + change_string(s))
+        print()
