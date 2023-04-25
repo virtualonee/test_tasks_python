@@ -2,22 +2,21 @@ import re
 
 
 def change_string(string: str):
-    string = re.search(r'\d{2,4}\\\d{2,5}', string)
+    list_string = re.findall(r'\d{2,4}\\\d{2,5}', string)
 
-    if string is None:
-        return 'Not found'
+    if len(list_string) == 0:
+        print("Not found")
 
-    string = string.group(0)
+    for i in list_string:
+        str1, str2 = re.split(r"\\", i)
 
-    str1, str2 = re.split(r"\\", string)
+        while re.fullmatch(r'\d{2,3}', str1):
+            str1 = '0'+str1
 
-    while re.fullmatch(r'\d{2,3}', str1):
-        str1 = '0'+str1
+        while re.fullmatch(r'\d{2,4}', str2):
+            str2 = '0'+str2
 
-    while re.fullmatch(r'\d{2,4}', str2):
-        str2 = '0'+str2
-
-    return str1+'\\'+str2
+        print(str1+'\\'+str2)
 
 
 if __name__ == '__main__':
@@ -25,5 +24,5 @@ if __name__ == '__main__':
     print()
     while True:
         s = input("Input string: ")
-        print("Result: " + change_string(s))
+        change_string(s)
         print()
